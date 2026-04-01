@@ -25,14 +25,11 @@ const CommentInput = ({ currentUser, value, onChange, onSubmit, isPending }) => 
   >
     {/* Avatar */}
     <div className="flex-shrink-0 d-flex align-items-center" style={{ marginRight: "12px" }}>
-      <Image
+      <img
         src={getAvatar(currentUser)}
         alt="My Avatar"
-        width={36}
-        height={36}
         className="rounded-circle"
         style={{ objectFit: "cover", width: "36px", height: "36px", minWidth: "36px" }}
-        unoptimized={true}
       />
     </div>
     
@@ -104,11 +101,9 @@ const CommentItem = ({ comment, currentUser, post, allComments, addCommentMutati
     <div className={`d-flex w-100 mb-3 ${level > 0 ? "mt-2" : ""}`} style={{ maxWidth: "100%" }}>
       <div className="flex-shrink-0 me-2 mt-1">
         <Link href={`/profile/${comment.author._id}`}>
-          <Image
+          <img
             src={getAvatar(comment.author)}
             alt=""
-            width={40}
-            height={40}
             className="rounded-circle"
             style={{ objectFit: "cover", width: "40px", height: "40px", minWidth: "40px" }}
           />
@@ -313,12 +308,11 @@ const PostCard = ({ post }) => {
         <div className="_feed_inner_timeline_post_top">
           <div className="_feed_inner_timeline_post_box">
             <div className="_feed_inner_timeline_post_box_image">
-              <Image
+              <img
                 src={getAvatar(post.author)}
                 alt="Avatar"
-                width={50}
-                height={50}
                 className="_post_img"
+                style={{ objectFit: "cover", width: "50px", height: "50px", borderRadius: "50%" }}
               />
             </div>
             <div className="_feed_inner_timeline_post_box_txt">
@@ -499,15 +493,12 @@ const PostCard = ({ post }) => {
       <div className="_feed_inner_timeline_total_reacts _padd_r24 _padd_l24 _mar_b26">
         <div className="_feed_inner_timeline_total_reacts_image" title={post.likes?.map(u => u.firstName).filter(Boolean).join(', ') || 'Liked'}>
           {post.likes.length > 0 && Array.from({ length: Math.min(post.likes.length, 5) }).map((_, i) => (
-            <Image
+            <img
               key={i}
               src={getAvatar(post.likes[i])}
               alt="User"
-              width={24}
-              height={24}
               className={i === 0 ? "_react_img1" : "_react_img"}
-              style={{ objectFit: "cover" }}
-              unoptimized={true}
+              style={{ objectFit: "cover", width: "24px", height: "24px", borderRadius: "50%" }}
             />
           ))}
           {post.likes.length > 5 && (
