@@ -73,11 +73,12 @@ const CreatePost = () => {
                 type="button"
                 className="btn btn-sm d-flex align-items-center gap-1 py-0 px-2"
                 style={{
-                  backgroundColor: "var(--bg3)",
+                  marginLeft: "10px",
+                  backgroundColor: "var(--bg-comment-inner)",
                   border: "1px solid var(--bcolor2)",
                   borderRadius: "4px",
                   fontSize: "12px",
-                  color: "var(--color-body)",
+                  color: "var(--text-comment-main)",
                 }}
                 onClick={() =>
                   setShowVisibilityDropdown(!showVisibilityDropdown)

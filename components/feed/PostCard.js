@@ -27,7 +27,7 @@ const CommentInput = ({
     className="d-flex align-items-center w-100"
     onSubmit={onSubmit}
     style={{
-      backgroundColor: "var(--bg3, #f0f2f5)",
+      backgroundColor: "var(--bg-comment-inner)",
       borderRadius: "50px",
       padding: "10px 18px",
       border: "1px solid transparent",
@@ -160,9 +160,9 @@ const CommentItem = ({
         <div
           className="p-3"
           style={{
-            backgroundColor: "var(--bg3, #f0f2f5)",
+            backgroundColor: "var(--bg-comment-inner)",
             borderRadius: "18px",
-            color: "var(--color-body, #050505)",
+            color: "var(--text-comment-main)",
             position: "relative",
             width: "100%",
             wordBreak: "break-word",
@@ -177,7 +177,7 @@ const CommentItem = ({
               style={{
                 fontWeight: 600,
                 fontSize: "14px",
-                color: "var(--color-heading, #050505)",
+                color: "var(--text-comment-main)",
               }}
             >
               {comment.author.firstName} {comment.author.lastName}
@@ -188,7 +188,7 @@ const CommentItem = ({
             style={{
               fontSize: "14px",
               lineHeight: "1.4",
-              color: "var(--color-body, #050505)",
+              color: "var(--text-comment-main)",
             }}
           >
             {comment.content}
@@ -219,7 +219,7 @@ const CommentItem = ({
               <span className="text-primary me-1 d-flex align-items-center">
                 <Icons.Like width={16} height={16} />
               </span>
-              <span style={{ color: "var(--color-heading, #65676B)" }}>
+              <span style={{ color: "var(--text-comment-meta)" }}>
                 {comment.likes.length}
               </span>
             </div>
@@ -231,7 +231,7 @@ const CommentItem = ({
           className="d-flex align-items-center mt-2 ms-3"
           style={{
             fontSize: "13px",
-            color: "var(--color-heading, #65676B)",
+            color: "var(--text-comment-meta)",
             fontWeight: 600,
           }}
         >
@@ -242,7 +242,7 @@ const CommentItem = ({
               fontWeight: 600,
               color: isLiked
                 ? "var(--primary-color, #0d6efd)"
-                : "var(--color-heading, #65676B)",
+                : "var(--text-comment-meta)",
             }}
           >
             {isLiked ? "Liked" : "Like."}
@@ -250,7 +250,7 @@ const CommentItem = ({
           <button
             onClick={() => setShowReplyInput(!showReplyInput)}
             className="bg-transparent border-0 p-0 text-inherit me-3 flex-shrink-0"
-            style={{ fontWeight: 600, color: "var(--color-heading, #65676B)" }}
+            style={{ fontWeight: 600, color: "var(--text-comment-meta)" }}
           >
             Reply.
           </button>
@@ -609,7 +609,6 @@ const PostCard = ({ post }) => {
                     height={100}
                     className="rounded"
                     style={{ objectFit: "cover" }}
-                    unoptimized={true}
                   />
                   <p className="small text-muted mb-0">
                     Existing Image (Save to keep)
@@ -715,7 +714,6 @@ const PostCard = ({ post }) => {
                         width: "100%",
                         height: "100%",
                       }}
-                      unoptimized={true}
                     />
                   </div>
                 ))}
@@ -727,7 +725,6 @@ const PostCard = ({ post }) => {
                 width={600}
                 height={300}
                 className="_time_img"
-                unoptimized={true}
               />
             )}
           </div>

@@ -130,7 +130,18 @@ ul {
     --b-shadow6: 0px 4px 0px 4px rgba(108, 126, 147, 0.15);
     --bcolor1: #F0F2F5;
     --bcolor2: #E8E8E8;
-    --bcolor2: #F5F5F5;
+    --bcolor3: #F5F5F5;
+
+    /* Theme-aware variables */
+    --bg-comment-inner: #f0f2f5;
+    --text-comment-main: #050505;
+    --text-comment-meta: #65676b;
+}
+
+._dark_wrapper {
+    --bg-comment-inner: #232E42;
+    --text-comment-main: #ffffff;
+    --text-comment-meta: rgba(255, 255, 255, 0.6);
 }
 
 ._layout {
@@ -261,7 +272,6 @@ ul {
     font-weight: 400;
 }
 
-._btn2:hover {}
 
 ._btn3 {
     height: 32px;
@@ -271,7 +281,6 @@ ul {
     font-weight: 400;
 }
 
-._btn3:hover {}
 
 ._btn4 {
     height: 44px;
@@ -282,7 +291,6 @@ ul {
     padding: 0px 20px;
 }
 
-._btn4:hover {}
 
 
 /* Display */
