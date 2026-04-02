@@ -1,7 +1,8 @@
 import * as Icons from "@/components/ui/CustomIcons";
+import UserAvatar from "@/components/ui/UserAvatar";
 import { useCreatePost, useMe } from "@/lib/hooks";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const CreatePost = () => {
@@ -16,7 +17,7 @@ const CreatePost = () => {
 
   useEffect(() => {
     return () => {
-      previewUrls.forEach(url => URL.revokeObjectURL(url));
+      previewUrls.forEach((url) => URL.revokeObjectURL(url));
     };
   }, [previewUrls]);
 
@@ -53,7 +54,7 @@ const CreatePost = () => {
     if (e.target.files && e.target.files.length > 0) {
       const selectedFiles = Array.from(e.target.files);
       setFiles((prev) => [...prev, ...selectedFiles]);
-      
+
       const newPreviewUrls = selectedFiles.map((f) => URL.createObjectURL(f));
       setPreviewUrls((prev) => [...prev, ...newPreviewUrls]);
     }
@@ -63,12 +64,7 @@ const CreatePost = () => {
     <div className="_feed_inner_text_area _b_radious6 _padd_b24 _padd_t24 _padd_r24 _padd_l24 _mar_b16">
       <div className="_feed_inner_text_area_box">
         <div className="_feed_inner_text_area_box_image">
-          <Image
-            src={user?.avatar || "/assets/images/profile.png"}
-            alt="Profile Image"
-            width={50}
-            height={50}
-          />
+          <UserAvatar user={user} size={50} />
         </div>
         <div className="_feed_inner_text_area_box_form">
           <div className="d-flex align-items-center mb-2">
@@ -76,28 +72,30 @@ const CreatePost = () => {
               <button
                 type="button"
                 className="btn btn-sm d-flex align-items-center gap-1 py-0 px-2"
-                style={{ 
-                  backgroundColor: "var(--bg3)", 
+                style={{
+                  backgroundColor: "var(--bg3)",
                   border: "1px solid var(--bcolor2)",
                   borderRadius: "4px",
                   fontSize: "12px",
-                  color: "var(--color-body)"
+                  color: "var(--color-body)",
                 }}
-                onClick={() => setShowVisibilityDropdown(!showVisibilityDropdown)}
+                onClick={() =>
+                  setShowVisibilityDropdown(!showVisibilityDropdown)
+                }
               >
                 <span className="text-capitalize">{visibility}</span>
                 <Icons.Dropdown width={10} height={10} />
               </button>
-              
+
               {showVisibilityDropdown && (
-                <div 
+                <div
                   className="position-absolute shadow-sm rounded p-1 mt-1 border"
-                  style={{ 
-                    zIndex: 10, 
-                    backgroundColor: "var(--bg2)", 
+                  style={{
+                    zIndex: 10,
+                    backgroundColor: "var(--bg2)",
                     minWidth: "120px",
                     top: "100%",
-                    left: 0
+                    left: 0,
                   }}
                 >
                   <button
@@ -155,12 +153,12 @@ const CreatePost = () => {
           </div>
 
           {previewUrls.length > 0 && (
-            <div 
+            <div
               className="mt-2 mb-2"
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-                gap: "8px"
+                gap: "8px",
               }}
             >
               {previewUrls.map((url, index) => (
@@ -169,7 +167,7 @@ const CreatePost = () => {
                     type="button"
                     className="btn-close position-absolute p-1 bg-white rounded-circle shadow-sm"
                     aria-label="Remove image"
-                    style={{ 
+                    style={{
                       zIndex: 10,
                       top: "4px",
                       right: "4px",
@@ -179,11 +177,11 @@ const CreatePost = () => {
                       height: "24px",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center"
+                      justifyContent: "center",
                     }}
                     onClick={() => {
-                      setFiles(prev => prev.filter((_, i) => i !== index));
-                      setPreviewUrls(prev => {
+                      setFiles((prev) => prev.filter((_, i) => i !== index));
+                      setPreviewUrls((prev) => {
                         const newUrls = [...prev];
                         URL.revokeObjectURL(newUrls[index]);
                         newUrls.splice(index, 1);
@@ -194,11 +192,13 @@ const CreatePost = () => {
                       }
                     }}
                   />
-                  <img 
-                    src={url} 
-                    alt={`Upload preview ${index + 1}`} 
+                  <Image
+                    src={url}
+                    alt={`Upload preview ${index + 1}`}
                     className="img-fluid rounded border w-100"
-                    style={{ height: '150px', objectFit: 'cover' }}
+                    width={120}
+                    height={120}
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
               ))}

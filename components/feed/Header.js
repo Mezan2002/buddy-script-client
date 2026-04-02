@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import * as Icons from "@/components/ui/CustomIcons";
-import { notifications } from "./mockData";
+import UserAvatar from "@/components/ui/UserAvatar";
 import { useMe } from "@/lib/hooks";
 import { useQueryClient } from "@tanstack/react-query";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { notifications } from "./mockData";
 
 const Header = () => {
   const { data: user } = useMe();
@@ -151,13 +152,7 @@ const Header = () => {
           </ul>
           <div className="_header_nav_profile">
             <div className="_header_nav_profile_image">
-              <Image
-                src={user?.avatar || "/assets/images/profile.png"}
-                alt="Profile"
-                width={40}
-                height={40}
-                className="_nav_profile_img"
-              />
+              <UserAvatar user={user} size={25} className="_nav_profile_img" />
             </div>
             <div className="_header_nav_dropdown">
               <p className="_header_nav_para">
@@ -179,11 +174,9 @@ const Header = () => {
               >
                 <div className="_nav_profile_dropdown_info">
                   <div className="_nav_profile_dropdown_image">
-                    <Image
-                      src={user?.avatar || "/assets/images/profile.png"}
-                      alt="Profile"
-                      width={50}
-                      height={50}
+                    <UserAvatar
+                      user={user}
+                      size={50}
                       className="_nav_drop_img"
                     />
                   </div>
@@ -270,7 +263,11 @@ const Header = () => {
                     </Link>
                   </li>
                   <li className="_nav_dropdown_list_item">
-                    <div className="_nav_dropdown_link" onClick={handleLogout} style={{ cursor: 'pointer' }}>
+                    <div
+                      className="_nav_dropdown_link"
+                      onClick={handleLogout}
+                      style={{ cursor: "pointer" }}
+                    >
                       <div className="_nav_drop_info">
                         <span>
                           <svg
